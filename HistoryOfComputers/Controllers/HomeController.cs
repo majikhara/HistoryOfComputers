@@ -11,6 +11,7 @@ namespace HistoryOfComputers.Controllers
         public IActionResult Index()
         {
             return View();
+            //User.Identity.Name
         }
 
         public IActionResult About()

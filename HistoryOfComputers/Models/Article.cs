@@ -11,8 +11,10 @@ namespace HistoryOfComputers.Models
         public int PeriodID { get; set; } //FK
         public string Title { get; set; }
         public string Body { get; set; }
-        public string References { get; set; }
+        public string Reference { get; set; }
         public string Image { get; set; }
+        
+        //public virtual ICollection<Comment> Comments { get; set; } 
 
         
     }

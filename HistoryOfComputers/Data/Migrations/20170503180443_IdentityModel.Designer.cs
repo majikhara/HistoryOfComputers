@@ -8,9 +8,10 @@ using HistoryOfComputers.Data;
 namespace HistoryOfComputers.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170503180443_IdentityModel")]
+    partial class IdentityModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -30,14 +31,6 @@ namespace HistoryOfComputers.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(65);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(70);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -72,6 +65,23 @@ namespace HistoryOfComputers.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("HistoryOfComputers.Models.Favorite", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(450);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("ArticleID");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Favorite");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -179,6 +189,13 @@ namespace HistoryOfComputers.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("HistoryOfComputers.Models.Favorite", b =>
+                {
+                    b.HasOne("HistoryOfComputers.Models.ApplicationUser")
+                        .WithMany("Favorites")
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
