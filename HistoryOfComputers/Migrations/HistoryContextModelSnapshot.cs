@@ -31,6 +31,8 @@ namespace HistoryOfComputers.Migrations
 
                     b.Property<string>("Title");
 
+                    b.Property<int>("Year");
+
                     b.HasKey("ArticleID");
 
                     b.HasIndex("PeriodID");
