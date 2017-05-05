@@ -50,6 +50,22 @@ h1#main-title
     box-shadow: none;
 }
 
+.article-details {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.article-image {
+    padding-top: 20px;
+}
+
+.post-button {
+    margin-top: 10px;
+    background-color: darkslategray;
+}
+
+
+
 .site-footer {
     border-top:solid 2px black;
     width: 100%;
