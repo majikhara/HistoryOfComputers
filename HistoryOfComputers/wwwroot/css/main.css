@@ -1,4 +1,9 @@
-﻿body {
+﻿html{
+ 
+    min-height:100%;
+}
+
+body {
    background-color: #333333;
    color:ghostwhite;
    min-height:100%;
@@ -24,8 +29,8 @@ h1#main-title
 }
 
 
-.container.body-content.col-md-12 {
-    min-height: 100%;
+.container.body-content {
+  min-height:100%;
 }
 
 .thumbnail {
@@ -50,8 +55,8 @@ h1#main-title
     padding-bottom: 20px;
 }
 
-.article-image{
-    padding-top:20px;
+.article-image {
+    padding-top: 20px;
 }
 
 .post-button {
@@ -59,25 +64,17 @@ h1#main-title
     background-color: darkslategray;
 }
 
-/*input,
-select,
-textarea {
-    max-width: 100%;
-}*/
 
-/*.site-footer {
+
+.site-footer {
     border-top:solid 2px black;
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    height: 60px;
+    padding:0;
     text-align:center;
     background-color:darkslategrey;
 
 }
 .site-footer p{
     margin:0;
-    padding:20px;
-    vertical-align:middle;*/
-
+    padding:0;
 }

@@ -1,12 +1,12 @@
 @model HistoryOfComputers.Models.Article
 
 @{
-    ViewData["Title"] = "Article Details";
+    ViewData["Title"] = "Details";
 }
 
 
-<h2 class="text-center">@Html.DisplayFor(model => model.Title)</h2>
 
+<h2 class="text-center">@Html.DisplayFor(model => model.Title)</h2>
 <div class="row article-details">
     <div class="col-md-3 col-md-offset-2">
         <img class="img-responsive" src="~/images/@Html.DisplayFor(model => model.Image)">
@@ -16,7 +16,6 @@
         <p>
             @Html.DisplayFor(model => model.Body)
         </p>
-
     </div>
 </div>
 <hr />
@@ -34,68 +33,78 @@
                     <td>Comment 3</td>
                 </tr>
             </tbody>
-
         </table>
     </div>
     <div class="col-md-4">
-
         <form>
             <div class="form-group">
                 <label for="comment">Comment:</label>
                 <textarea class="form-control" rows="5" id="comment"></textarea>
-                
-                <button type="submit" class="btn post-button">Post</button>
 
+                <button type="submit" class="btn post-button">Post</button>
             </div>
         </form>
-
     </div>
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Details</h2>
+
 @*<div>
-        <h4>Article</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Year)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Year)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Body)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Body)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Reference)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Reference)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Image)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Image)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.TimePeriod)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.TimePeriod.PeriodID)
-            </dd>
-        </dl>
-    </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.ArticleID">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>*@
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            <img class="img-responsive" src="~/images/@Html.DisplayFor(model => model.Image)" >
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TimePeriod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TimePeriod.PeriodID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ArticleID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>*@

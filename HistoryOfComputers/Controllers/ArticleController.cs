@@ -65,7 +65,7 @@ namespace HistoryOfComputers.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
             return View(article);
         }
 
@@ -82,7 +82,7 @@ namespace HistoryOfComputers.Controllers
             {
                 return NotFound();
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
             return View(article);
         }
 
@@ -118,7 +118,7 @@ namespace HistoryOfComputers.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
             return View(article);
         }
 
