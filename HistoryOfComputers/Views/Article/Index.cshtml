@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Articles</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -49,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.Reference)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                <img class="img-responsive "src="~/images/@Html.DisplayFor(modelItem => item.Image)" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimePeriod.PeriodID)
