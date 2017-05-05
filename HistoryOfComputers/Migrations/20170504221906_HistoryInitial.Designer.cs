@@ -8,9 +8,10 @@ using HistoryOfComputers.Data;
 namespace HistoryOfComputers.Migrations
 {
     [DbContext(typeof(HistoryContext))]
-    partial class HistoryContextModelSnapshot : ModelSnapshot
+    [Migration("20170504221906_HistoryInitial")]
+    partial class HistoryInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

@@ -45,7 +45,27 @@ h1#main-title
     box-shadow: none;
 }
 
-.site-footer {
+.article-details {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.article-image{
+    padding-top:20px;
+}
+
+.post-button {
+    margin-top: 10px;
+    background-color: darkslategray;
+}
+
+/*input,
+select,
+textarea {
+    max-width: 100%;
+}*/
+
+/*.site-footer {
     border-top:solid 2px black;
     position: absolute;
     bottom: 0;
@@ -58,6 +78,6 @@ h1#main-title
 .site-footer p{
     margin:0;
     padding:20px;
-    vertical-align:middle;
+    vertical-align:middle;*/
 
 }

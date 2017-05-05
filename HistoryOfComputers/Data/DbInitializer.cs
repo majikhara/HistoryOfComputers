@@ -10,6 +10,27 @@ namespace HistoryOfComputers.Data
     {
         public static void Initialize(HistoryContext context)
         {
+            //============== Time Periods ==============//
+            if (context.TimePeriods.Any())
+            {
+                return;
+            }
+
+            var timePeriods = new TimePeriod[]
+            {
+                new TimePeriod{PeriodName="Pre-1970s"},
+                new TimePeriod{PeriodName="1970s"},
+                new TimePeriod{PeriodName="1980s"},
+                new TimePeriod{PeriodName="1990s"},
+                new TimePeriod{PeriodName="2000s"}
+            };
+
+            foreach (TimePeriod t in timePeriods)
+            {
+                context.TimePeriods.Add(t);
+            }
+            context.SaveChanges();
+
             ////=============== Article ================//
             if (context.Articles.Any())
             {
@@ -31,26 +52,7 @@ namespace HistoryOfComputers.Data
             }
             context.SaveChanges();
 
-            //============== Time Periods ==============//
-            if (context.TimePeriods.Any())
-            {
-                return;
-            }
-
-            var timePeriods = new TimePeriod[]
-            {
-                new TimePeriod{PeriodName="Pre-1970s"},
-                new TimePeriod{PeriodName="1970s"},                    
-                new TimePeriod{PeriodName="1980s"},
-                new TimePeriod{PeriodName="1990s"},
-                new TimePeriod{PeriodName="2000s"}
-            };
-
-            foreach(TimePeriod t in timePeriods)
-            {
-                context.TimePeriods.Add(t);
-            }
-            context.SaveChanges();
+            
 
         }
 
