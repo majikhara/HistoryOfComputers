@@ -19,11 +19,17 @@ namespace HistoryOfComputers.Controllers
             _context = context;    
         }
 
+
+
+
+
         // GET: Article
         public async Task<IActionResult> Index()
         {
             var historyContext = _context.Articles.Include(a => a.TimePeriod);
-            return View(await historyContext.ToListAsync());
+            return View(await historyContext
+                    .OrderBy(i=>i.Year)
+                .ToListAsync());
         }
 
         // GET: Article/Details/5
