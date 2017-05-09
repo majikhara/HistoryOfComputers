@@ -9,7 +9,9 @@ namespace HistoryOfComputers.Models
     public class Favorite
     {
         [StringLength(450)]
-        public string id { get; set; } //PK & FK
-        public int ArticleID { get; set; } //PK & FK
+        public string FavoriteID { get; set; } //PK
+        public int ArticleID { get; set; } //FK
+        public virtual Article Article { get; set; }
+
     }
 }

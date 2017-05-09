@@ -18,14 +18,19 @@
             <div class="tldate">@Model.FirstOrDefault().TimePeriod.PeriodName</div>
         </li>*@
         
+        @{string last = "";}
+        @{string current = "";}
 
     @foreach (var item in Model)
     {
-        <li>
-            <div class="tldate">@item.TimePeriod.PeriodName</div>
-        </li>
+        current = @item.TimePeriod.PeriodName;
 
-
+        if (current != last)
+        {
+            <li>
+                <div class="tldate">@current</div>
+            </li>
+        }
         if (count % 2 == 0)
         {
             <li>
@@ -60,7 +65,9 @@
             </li>
         }
         count++;
+        last = current;
     }
+
         
 </ul>
     @*<h2>Articles</h2>

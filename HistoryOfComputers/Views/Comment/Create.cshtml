@@ -1,0 +1,48 @@
+@model HistoryOfComputers.Models.Comment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Comment</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="UserID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UserID" class="form-control" />
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ArticleID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ArticleID" class ="form-control" asp-items="ViewBag.ArticleID"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CommentText" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CommentText" class="form-control" />
+                <span asp-validation-for="CommentText" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

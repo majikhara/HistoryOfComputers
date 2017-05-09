@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using HistoryOfComputers.Data;
 
-namespace HistoryOfComputers.Migrations
+namespace HistoryOfComputers.Migrations.History
 {
     [DbContext(typeof(HistoryContext))]
     partial class HistoryContextModelSnapshot : ModelSnapshot
@@ -40,6 +40,40 @@ namespace HistoryOfComputers.Migrations
                     b.ToTable("Article");
                 });
 
+            modelBuilder.Entity("HistoryOfComputers.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ArticleID");
+
+                    b.Property<string>("CommentText");
+
+                    b.Property<string>("UserID")
+                        .IsRequired();
+
+                    b.HasKey("CommentID");
+
+                    b.HasIndex("ArticleID");
+
+                    b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("HistoryOfComputers.Models.Favorite", b =>
+                {
+                    b.Property<string>("FavoriteID")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(450);
+
+                    b.Property<int>("ArticleID");
+
+                    b.HasKey("FavoriteID");
+
+                    b.HasIndex("ArticleID");
+
+                    b.ToTable("Favorite");
+                });
+
             modelBuilder.Entity("HistoryOfComputers.Models.TimePeriod", b =>
                 {
                     b.Property<int>("PeriodID")
@@ -54,9 +88,25 @@ namespace HistoryOfComputers.Migrations
 
             modelBuilder.Entity("HistoryOfComputers.Models.Article", b =>
                 {
-                    b.HasOne("HistoryOfComputers.Models.TimePeriod")
+                    b.HasOne("HistoryOfComputers.Models.TimePeriod", "TimePeriod")
                         .WithMany("Articles")
                         .HasForeignKey("PeriodID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HistoryOfComputers.Models.Comment", b =>
+                {
+                    b.HasOne("HistoryOfComputers.Models.Article", "Article")
+                        .WithMany("Comments")
+                        .HasForeignKey("ArticleID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HistoryOfComputers.Models.Favorite", b =>
+                {
+                    b.HasOne("HistoryOfComputers.Models.Article", "Article")
+                        .WithMany("Favorites")
+                        .HasForeignKey("ArticleID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

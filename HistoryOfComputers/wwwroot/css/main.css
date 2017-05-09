@@ -8,6 +8,8 @@ body {
     min-height: 100%;
 }
 
+
+
 h1#main-title {
     font-family: 'Courier New';
 }
@@ -112,7 +114,7 @@ img {
 }
 
     .timeline:before {
-        top: 0;
+        top: 20px;
         bottom: 0;
         position: absolute;
         content: " ";
@@ -128,12 +130,15 @@ img {
     width: 200px;
     background: #414141;
     border: 3px solid #212121;
+    border-radius:50%;
     color: #ededed;
     margin: 0 auto;
     padding: 3px 0;
     font-weight: bold;
     text-align: center;
     -webkit-box-shadow: 0 0 11px rgba(0,0,0,0.35);
+    font-family: 'Courier New';
+    font-size: 150%;
 }
 
 .timeline li {
@@ -266,7 +271,9 @@ img {
     background: darkslategray;
     color: #fff;
     width: 60px;
-    height: 60px;
+    font-family:'Courier New';
+    font-size: 18px;
+    height: 64px;
     line-height: 60px;
     margin-left: -29px;
     border: 3px solid white;
@@ -301,14 +308,8 @@ img {
 h1#timeline-title {
     font-family: 'Courier New';
     font-weight: 500;
+    text-shadow:2px 2px 2px gray;
 }
-
-
-
-
-
-
-
 
 
 /** media queries **/
