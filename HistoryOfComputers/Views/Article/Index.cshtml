@@ -4,62 +4,123 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Articles</h2>
+<div class="container">
+    <header class="page-header">
+        <h1 id="timeline-title">The Ages of Computing</h1>
+    </header>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Year)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Body)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Reference)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimePeriod)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reference)
-            </td>
-            <td>
-                <img class="img-responsive "src="~/images/@Html.DisplayFor(modelItem => item.Image)" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimePeriod.PeriodID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ArticleID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ArticleID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ArticleID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+    <ul class="timeline">
+      
+         @{ var count = 0;}    
+        @*<li>
+            <div class="tldate">@Model.FirstOrDefault().TimePeriod.PeriodName</div>
+        </li>*@
+        
+
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="tldate">@item.TimePeriod.PeriodName</div>
+        </li>
+
+
+        if (count % 2 == 0)
+        {
+            <li>
+                <div class="tl-circ">@Html.DisplayFor(modelItem => item.Year)</div>
+                <div class="timeline-panel">
+                    <div class="tl-heading">
+                        <h4>@Html.DisplayFor(model => item.Title)</h4>
+                        <a asp-action="Details" asp-route-id="@item.ArticleID">
+                            <img class="img-responsive center-block" src="~/images/@Html.DisplayFor(modelItem => item.Image)" />
+                        </a>
+
+                    </div>
+
+                </div>
+            </li>
+        }
+        else
+        {
+
+            <li class="timeline-inverted">
+                <div class="tl-circ">@Html.DisplayFor(modelItem => item.Year)</div>
+                <div class="timeline-panel">
+                    <div class="tl-heading">
+                        <h4>@Html.DisplayFor(model => item.Title)</h4>
+                        <a asp-action="Details" asp-route-id="@item.ArticleID">
+                            <img class="img-responsive center-block" src="~/images/@Html.DisplayFor(modelItem => item.Image)" />
+                            </a>
+
+</div>
+
+                </div>
+            </li>
+        }
+        count++;
+    }
+        
+</ul>
+    @*<h2>Articles</h2>
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Year)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Body)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Reference)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Image)
+                        </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimePeriod)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Body)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reference)
+                    </td>
+                    <td>
+                        <img class="img-responsive "src="~/images/@Html.DisplayFor(modelItem => item.Image)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimePeriod.PeriodID)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ArticleID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ArticleID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ArticleID">Delete</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>*@
+
+
