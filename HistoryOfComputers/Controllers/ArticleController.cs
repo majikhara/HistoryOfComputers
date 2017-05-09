@@ -24,11 +24,19 @@ namespace HistoryOfComputers.Controllers
 
 
         // GET: Article
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var historyContext = _context.Articles.Include(a => a.TimePeriod);
-            return View(await historyContext
-                    .OrderBy(i=>i.Year)
+            //var historyContext = (from a in  _context.Articles select a); //put include here
+
+            //if(id != null)
+            //{    
+            //    historyContext = historyContext.Where(x=> x.PeriodID == id.Value);
+            //}
+            IQueryable<Article> articles = _context.Articles
+                .Where(c => !id.HasValue || c.PeriodID == id)
+                .OrderBy(i => i.Year).Include(x => x.TimePeriod);
+            
+            return View(await articles
                 .ToListAsync());
         }
 

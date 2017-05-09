@@ -12,11 +12,20 @@
 
 
     <ul class="timeline">
-        <li><div class="tldate">Apr 2014</div></li>
+      
          @{ var count = 0;}    
+        @*<li>
+            <div class="tldate">@Model.FirstOrDefault().TimePeriod.PeriodName</div>
+        </li>*@
+        
 
     @foreach (var item in Model)
     {
+        <li>
+            <div class="tldate">@item.TimePeriod.PeriodName</div>
+        </li>
+
+
         if (count % 2 == 0)
         {
             <li>
