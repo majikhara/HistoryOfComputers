@@ -14,8 +14,9 @@ namespace HistoryOfComputers.Models
         public string Body { get; set; }
         public string Reference { get; set; }
         public string Image { get; set; }
-        
-        //public virtual ICollection<Comment> Comments { get; set; } 
+
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual TimePeriod TimePeriod { get; set; }
         
     }

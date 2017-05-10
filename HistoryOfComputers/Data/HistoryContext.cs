@@ -16,15 +16,15 @@ namespace HistoryOfComputers.Data
 
         public DbSet<Article> Articles { get; set; }
         public DbSet<TimePeriod> TimePeriods { get; set; }
-        //public DbSet<Favorite> Favorites { get; set; }
-        //public DbSet<Comment> Comments { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Article>().ToTable("Article");
             modelBuilder.Entity<TimePeriod>().ToTable("TimePeriod");
-            //modelBuilder.Entity<Favorite>().ToTable("Favorite");
-            //modelBuilder.Entity<Comment>().ToTable("Comment");
+            modelBuilder.Entity<Favorite>().ToTable("Favorite");
+            modelBuilder.Entity<Comment>().ToTable("Comment");
 
             ////Complex Data Model
             //modelBuilder.Entity<OfficeAssignment>().ToTable("OfficeAssignment");
@@ -32,7 +32,11 @@ namespace HistoryOfComputers.Data
             //modelBuilder.Entity<Department>().ToTable("Department");
 
             ////Composite PK on CourseAssignment (CourseID, InstructorID)
-            //modelBuilder.Entity<CourseAssignment>().HasKey(c => new { c.CourseID, c.InstructorID });
+            //modelBuilder.Entity<Comment>().HasKey(c => new { c.UserID, c.ArticleID});
         }
+        //public DbSet<Favorite> Favorites { get; set; }
+        //public DbSet<Comment> Comments { get; set; }
+
+        //public DbSet<HistoryOfComputers.Models.Comment> Comment { get; set; }
     }
 }
