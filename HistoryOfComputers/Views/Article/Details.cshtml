@@ -1,4 +1,5 @@
 @model HistoryOfComputers.Models.Article
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -19,11 +20,24 @@
     </div>
 </div>
 <hr />
+
 <div class="row article-details">
     <div class="col-md-3 col-md-offset-2">
         <table class="table">
             <tbody>
-                <tr>
+                @{
+                    List<Comment> comments = ViewBag.Comments;
+                    foreach (var comment in comments)
+                    {
+                        <tr>
+                            <td>@comment.UserID</td>
+                            <td>@comment.CommentText</td>
+                        </tr>
+
+                    }
+
+                }
+                @*<tr>
                     <td>Comment 1</td>
                 </tr>
                 <tr>
@@ -31,15 +45,18 @@
                 </tr>
                 <tr>
                     <td>Comment 3</td>
-                </tr>
+                </tr>*@
             </tbody>
         </table>
     </div>
     <div class="col-md-4">
-        <form>
+        <form asp-action="AddComment" asp-controller="Article" method="post">
+            <input type="hidden" id="UserID" name="UserID" value="@UserManager.GetUserId(User)" />
+            @*<input type="hidden" id="UserName" name="UserName" value="@UserManager.GetUserName(User)" />*@
+            <input type="hidden" asp-for="ArticleID" />
             <div class="form-group">
                 <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" name="CommentText" id="CommentText"></textarea>
 
                 <button type="submit" class="btn post-button">Post</button>
             </div>

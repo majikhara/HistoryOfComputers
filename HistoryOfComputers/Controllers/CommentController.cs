@@ -7,21 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HistoryOfComputers.Data;
 using HistoryOfComputers.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace HistoryOfComputers.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly HistoryContext _context;
+        private readonly UserManager<ApplicationUser> _userManager; //dcowan: need Identity users
 
-        public CommentController(HistoryContext context)
+        public CommentController(HistoryContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
+        }
+
+        private Task<ApplicationUser> GetCurrentUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
+           
         }
 
         // GET: Comment
         public async Task<IActionResult> Index()
         {
+            var curUser = await GetCurrentUserAsync();
+            
+           
             var historyContext = _context.Comments.Include(c => c.Article);
             return View(await historyContext.ToListAsync());
         }
@@ -46,8 +60,14 @@ namespace HistoryOfComputers.Controllers
         }
 
         // GET: Comment/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ViewData["UserID"] = user.Id;
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArticleID");
             return View();
         }
@@ -61,6 +81,7 @@ namespace HistoryOfComputers.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
