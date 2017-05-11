@@ -68,6 +68,7 @@ namespace HistoryOfComputers.Controllers
             }
 
             var comments = _context.Comments.Where(a => a.ArticleID == id).ToList();
+            
 
             ViewData["comments"] = comments;
 

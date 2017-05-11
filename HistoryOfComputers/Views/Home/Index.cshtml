@@ -1,6 +1,68 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+<h1 class="text-center" id="main-title">Welcome to the History of Computers</h1>
+<h3 class="text-center">Please choose a Time Period to continue!</h3>
+<div class="container col-md-offset-2 col-md-8 text-center" id="main-page">
+
+    <br />
+    <br />
+
+    <div class="center-block" id="terminal">
+        <div class="box center-block">
+            <div class="thumbnail" id="timeperiodchoice" style="padding:30px;">
+                <div class="row">
+                    <a asp-controller="Article" asp-action="Index" asp-route-id="1">
+                        <div class="thumbnail col-md-push-1 col-md-3">
+                            <p>Pre-1970s</p>
+                        </div>
+                    </a>
+                    <a asp-controller="Article" asp-action="Index" asp-route-id="2">
+                        <div class="thumbnail col-md-push-1 col-md-3">
+                            <p>1970s</p>
+                        </div>
+                    </a>
+                    <a asp-controller="Article" asp-action="Index" asp-route-id="3">
+                        <div class="thumbnail col-md-push-1 col-md-3">
+                            <p>1980s</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a asp-controller="Article" asp-action="Index" asp-route-id="4">
+                        <div class="thumbnail col-md-push-1 col-md-3">
+                            <p>1990s</p>
+                        </div>
+                    </a>
+                    <a asp-controller="Article" asp-action="Index" asp-route-id="5">
+                        <div class="thumbnail col-md-push-1 col-md-3">
+                            <p>2000s</p>
+                        </div>
+                    </a>
+                    <a asp-controller="Article" asp-action="Index">
+                        <div class="thumbnail col-md-push-1 col-md-3">
+                            <p>View All</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <h4 class="text-center" style="font-family:'Courier New'; color:black; padding-top:10px;">IBM <span class="pull-right"> <i class="glyphicon glyphicon-collapse-down"></i></span></h4>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@*@{
+    ViewData["Title"] = "Home Page";
+}
           
 
 <div class="box text-center">
@@ -41,5 +103,5 @@
             <p>View All</p>
         </div>
         </a>
-</div>
+</div>*@
 
