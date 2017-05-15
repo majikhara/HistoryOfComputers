@@ -51,7 +51,6 @@ div#terminal.center-block {
     padding: 80px 10px;
     vertical-align: middle;
     text-align: center;
-
     margin: 0px 5px 5px;
     border-radius: 20%;
     color: ghostwhite;
@@ -60,27 +59,21 @@ div#terminal.center-block {
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     background-color: darkslategrey;
 }
- 
-
 
     .thumbnail:hover {
         box-shadow: none;
     }
 
-
-
 div#timeperiodchoice.thumbnail {
-  
+    background-color: black;
     border-radius: 1%;
-    min-height: 166px;
     box-shadow: inset -1px 7px 148px -8px rgba(224,197,224,0.3);
-    background:black;
 }
 
-    /*div#timeperiodchoice.thumbnail:hover {
+    div#timeperiodchoice.thumbnail:hover {
         background-color: black;
         box-shadow: inset -1px 7px 148px -8px rgba(224,197,224,0.3);
-    }*/
+    }
 /*eallain end changes*/
 .article-details {
     padding-top: 20px;
@@ -127,24 +120,23 @@ img {
 
 /*dcowan start of changes*/
 div.scroll {
-    height: 300px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    height:300px;
+    overflow-y:scroll;
+    overflow-x:hidden;
 }
 
 div#comment.thumbnail {
-    text-align: left;
+    text-align:left;
     font-size: 1em;
     padding: 5px 10px;
     margin: 10px;
     border-radius: 0;
     box-shadow: none;
 }
-
-    div#comment.thumbnail span {
-        font-style: italic;
-        font-size: 1em;
-    }
+div#comment.thumbnail span{
+    font-style:italic;
+    font-size:1em;
+}
 
 /** timeline box structure **/
 .timeline {
