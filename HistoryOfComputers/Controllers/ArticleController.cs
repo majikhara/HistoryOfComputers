@@ -7,20 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HistoryOfComputers.Data;
 using HistoryOfComputers.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace HistoryOfComputers.Controllers
 {
     public class ArticleController : Controller
     {
         private readonly HistoryContext _context;
+        private readonly UserManager<ApplicationUser> _userManager; //dcowan: need Identity users
 
-        public ArticleController(HistoryContext context)
+        public ArticleController(HistoryContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
+        private Task<ApplicationUser> GetCurrentUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
 
-
+        }
 
 
         // GET: Article
@@ -35,7 +41,7 @@ namespace HistoryOfComputers.Controllers
             IQueryable<Article> articles = _context.Articles
                 .Where(c => !id.HasValue || c.PeriodID == id)
                 .OrderBy(i => i.Year).Include(x => x.TimePeriod);
-            
+
             return View(await articles
                 .ToListAsync());
         }
@@ -43,6 +49,9 @@ namespace HistoryOfComputers.Controllers
         // GET: Article/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            //var viewModel = new Models.HistoryViewModels.ArticleCommentData();
+            //viewModel.Articles = await _context.Articles.Include(i => i.Comments).ToListAsync();
+
             if (id == null)
             {
                 return NotFound();
@@ -56,6 +65,30 @@ namespace HistoryOfComputers.Controllers
                 return NotFound();
             }
 
+            var comments = _context.Comments.Where(a => a.ArticleID == id).ToList();
+
+
+            ViewData["comments"] = comments;
+
+            return View(article);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddComment([Bind("ArticleID,UserID,CommentText")] Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _context.Add(comment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", new { id = comment.ArticleID });
+            }
+
+            var article = await _context.Articles
+                .Include(a => a.TimePeriod)
+                .SingleOrDefaultAsync(m => m.ArticleID == comment.ArticleID);
+            
             return View(article);
         }
 

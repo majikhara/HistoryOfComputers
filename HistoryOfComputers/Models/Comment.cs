@@ -17,6 +17,8 @@ namespace HistoryOfComputers.Models
 
         public string CommentText { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
         public virtual Article Article { get; set; }
     }
 }

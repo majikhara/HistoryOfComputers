@@ -1,4 +1,5 @@
 @model HistoryOfComputers.Models.Article
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -19,92 +20,53 @@
     </div>
 </div>
 <hr />
+
 <div class="row article-details">
     <div class="col-md-3 col-md-offset-2">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td>Comment 1</td>
-                </tr>
-                <tr>
-                    <td>Comment 2</td>
-                </tr>
-                <tr>
-                    <td>Comment 3</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="scroll">
+            @{
+                List<Comment> comments = ViewBag.Comments;
+                foreach (var comment in comments)
+                {
+                    var username = @comment.UserID.Substring(0, 7);
+                    <div class="thumbnail" id="comment">
+                        <span>@username</span><br />
+                        @comment.CommentText
+                    </div>
+
+                }
+
+            }
+            @*<table class="table table-bordered" id="commentTable">
+                    <tbody>
+                        @{
+                            List<Comment> comments = ViewBag.Comments;
+                            foreach (var comment in comments)
+                            {
+                                <tr>
+                                    <td>@comment.UserID</td>
+                                    <td>@comment.CommentText</td>
+                                </tr>
+
+                            }
+
+                        }
+
+                    </tbody>
+                </table>*@
+        </div>
     </div>
     <div class="col-md-4">
-        <form>
+        <form asp-action="AddComment" asp-controller="Article" method="post">
+            <input type="hidden" id="UserID" name="UserID" value="@UserManager.GetUserId(User)" />
+            @*<input type="hidden" id="UserName" name="UserName" value="@UserManager.GetUserName(User)" />*@
+            <input type="hidden" asp-for="ArticleID" />
             <div class="form-group">
                 <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" name="CommentText" id="CommentText"></textarea>
 
                 <button type="submit" class="btn post-button">Post</button>
             </div>
         </form>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<h2>Details</h2>
-
-@*<div>
-    <h4>Article</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Body)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Reference)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Reference)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd>
-            <img class="img-responsive" src="~/images/@Html.DisplayFor(model => model.Image)" >
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TimePeriod)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TimePeriod.PeriodID)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ArticleID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>*@
