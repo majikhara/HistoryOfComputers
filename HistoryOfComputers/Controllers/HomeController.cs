@@ -14,6 +14,12 @@ namespace HistoryOfComputers.Controllers
             //User.Identity.Name
         }
 
+        public IActionResult Landing()
+        {
+            return View();
+
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

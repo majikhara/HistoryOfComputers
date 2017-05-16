@@ -7,14 +7,14 @@
 
 
 
-<h2 class="text-center">@Html.DisplayFor(model => model.Title)</h2>
+<h2 class="text-center" id="article-title">@Html.DisplayFor(model => model.Title)</h2>
 <div class="row article-details">
     <div class="col-md-3 col-md-offset-2">
         <img class="img-responsive" src="~/images/@Html.DisplayFor(model => model.Image)">
     </div>
     <div class="col-md-5">
-        <h3>@Html.DisplayFor(model => model.Year)</h3>
-        <p>
+        <h3 id="article_year">@Html.DisplayFor(model => model.Year)</h3>
+        <p id="article_body">
             @Html.DisplayFor(model => model.Body)
         </p>
     </div>
@@ -23,43 +23,10 @@
 
 <div class="row article-details">
     <div class="col-md-3 col-md-offset-2">
-        <div class="scroll">
-            @{
-                List<Comment> comments = ViewBag.Comments;
-                foreach (var comment in comments)
-                {
-                    var username = @comment.UserID.Substring(0, 7);
-                    <div class="thumbnail" id="comment">
-                        <span>@username</span><br />
-                        @comment.CommentText
-                    </div>
-
-                }
-
-            }
-            @*<table class="table table-bordered" id="commentTable">
-                    <tbody>
-                        @{
-                            List<Comment> comments = ViewBag.Comments;
-                            foreach (var comment in comments)
-                            {
-                                <tr>
-                                    <td>@comment.UserID</td>
-                                    <td>@comment.CommentText</td>
-                                </tr>
-
-                            }
-
-                        }
-
-                    </tbody>
-                </table>*@
-        </div>
-    </div>
-    <div class="col-md-4">
         <form asp-action="AddComment" asp-controller="Article" method="post">
             <input type="hidden" id="UserID" name="UserID" value="@UserManager.GetUserId(User)" />
-            @*<input type="hidden" id="UserName" name="UserName" value="@UserManager.GetUserName(User)" />*@
+            <input type="hidden" id="DateCreated" name="DateCreated" value="@DateTime.Now.ToString("yyyy/MM/dd H:mm:ss")" />
+            <input type="hidden" id="UserName" name="UserName" value="@UserManager.GetUserName(User)" />
             <input type="hidden" asp-for="ArticleID" />
             <div class="form-group">
                 <label for="comment">Comment:</label>
@@ -69,4 +36,28 @@
             </div>
         </form>
     </div>
+    <div class="col-md-4">
+
+        <div>
+            @{
+                List<Comment> comments = ViewBag.Comments;
+                foreach (var comment in comments)
+                {
+                    var username = UserManager.GetUserName(User);
+                    var index = username.IndexOf("@");
+
+                        <div class="thumbnail" id="comment">
+                        <p><em>@username.Substring(0, index)</em><p/>
+                        <p>@comment.CommentText</p>
+                        <p style="font-size:10px;"> @comment.DateCreated</p>
+                    </div>
+
+
+                }
+
+            }
+           
+        </div>
+    </div>
+
 </div>

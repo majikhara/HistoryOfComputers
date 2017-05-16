@@ -84,7 +84,8 @@ namespace HistoryOfComputers
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Landing}/{id?}");
+                //template: "{controller=Home}/{action=Index}/{id?}");
             });
 
             DbInitializer.Initialize(context);

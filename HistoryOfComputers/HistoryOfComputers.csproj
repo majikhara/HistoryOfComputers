@@ -13,7 +13,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\css\crt.css" />
     <Content Include="wwwroot\css\main.css" />
+    <Content Include="wwwroot\css\terminal.css" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

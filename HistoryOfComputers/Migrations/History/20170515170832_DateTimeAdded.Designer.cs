@@ -8,9 +8,10 @@ using HistoryOfComputers.Data;
 namespace HistoryOfComputers.Migrations.History
 {
     [DbContext(typeof(HistoryContext))]
-    partial class HistoryContextModelSnapshot : ModelSnapshot
+    [Migration("20170515170832_DateTimeAdded")]
+    partial class DateTimeAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -49,7 +50,7 @@ namespace HistoryOfComputers.Migrations.History
 
                     b.Property<string>("CommentText");
 
-                    b.Property<string>("DateCreated");
+                    b.Property<DateTime>("DateCreated");
 
                     b.Property<string>("UserID")
                         .IsRequired();

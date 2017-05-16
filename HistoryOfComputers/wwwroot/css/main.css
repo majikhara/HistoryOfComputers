@@ -12,6 +12,10 @@ h1#main-title {
     font-family: 'Courier New';
 }
 
+p{
+    word-wrap:break-word;
+}
+
 .navbar {
     background-color: darkslategray;
 }
@@ -385,3 +389,5 @@ h1#timeline-title {
             right: auto;
         }
 }
+
+

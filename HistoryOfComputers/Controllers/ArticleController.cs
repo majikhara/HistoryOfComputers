@@ -65,7 +65,7 @@ namespace HistoryOfComputers.Controllers
                 return NotFound();
             }
 
-            var comments = _context.Comments.Where(a => a.ArticleID == id).ToList();
+            var comments = _context.Comments.Where(a => a.ArticleID == id).OrderByDescending(a=>a.DateCreated).ToList();
 
 
             ViewData["comments"] = comments;
@@ -75,7 +75,7 @@ namespace HistoryOfComputers.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddComment([Bind("ArticleID,UserID,CommentText")] Comment comment)
+        public async Task<IActionResult> AddComment([Bind("ArticleID,UserID,CommentText,DateCreated")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,10 @@ namespace HistoryOfComputers.Controllers
             }
 
             var article = await _context.Articles
-                .Include(a => a.TimePeriod)
+                .Include(a => a.TimePeriod)                
                 .SingleOrDefaultAsync(m => m.ArticleID == comment.ArticleID);
-            
+
+
             return View(article);
         }
 

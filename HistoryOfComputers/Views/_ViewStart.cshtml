@@ -1,3 +1,22 @@
-﻿@{
-    Layout = "_Layout";
+﻿@*@* dcowan: Setup site style
+    Different Layout for home page*@
+
+@{
+    //Retrieve current controller
+    string controller = ViewContext.RouteData.Values["Controller"].ToString();
+
+    //Retrieve current action
+    string action = ViewContext.RouteData.Values["Action"].ToString();
+
+    //Check if user is on Home Controller and Index Action
+    if (controller == "Home" && action == "Landing")
+    {
+        Layout = "_Layout_Landing";
+
+    }
+    else
+    {
+        Layout = "_Layout";
+
+    }
 }
