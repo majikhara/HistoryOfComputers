@@ -35,16 +35,19 @@
         {
             <li>
                 <div class="tl-circ">@Html.DisplayFor(modelItem => item.Year)</div>
-                <div class="timeline-panel">
-                    <div class="tl-heading">
-                        <h4>@Html.DisplayFor(model => item.Title)</h4>
-                        <a asp-action="Details" asp-route-id="@item.ArticleID">
+                <a asp-action="Details" asp-route-id="@item.ArticleID">
+                    <div class="timeline-panel">
+
+                        <div class="tl-heading">
+                            <h4>@Html.DisplayFor(model => item.Title)</h4>
+
                             <img class="img-responsive center-block" src="~/images/@Html.DisplayFor(modelItem => item.Image)" />
-                        </a>
+
+
+                        </div>
 
                     </div>
-
-                </div>
+                </a>
             </li>
         }
         else

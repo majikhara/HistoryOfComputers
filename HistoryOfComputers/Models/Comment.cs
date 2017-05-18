@@ -12,6 +12,8 @@ namespace HistoryOfComputers.Models
         public int CommentID { get; set; }
         [Required]
         public string UserID { get; set; }
+        [Required]
+        public string UserName { get; set; }
         //[Key]
         public int ArticleID { get; set; }
 
