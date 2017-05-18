@@ -55,10 +55,14 @@ namespace HistoryOfComputers
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            //dcowan: Register Custom Services
+            services.AddTransient<AdministratorSeedData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, HistoryContext context)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, 
+            HistoryContext context, AdministratorSeedData seeder)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -88,7 +92,12 @@ namespace HistoryOfComputers
                 //template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //dcowan: Seed administrator data
+            await seeder.EnsureSeedData();
+
             DbInitializer.Initialize(context);
+
+            
         }
     }
 }
