@@ -43,7 +43,7 @@
                 List<Comment> comments = ViewBag.Comments;
                 foreach (var comment in comments)
                 {
-                    var username = UserManager.GetUserName(User);
+                    var username = comment.UserName;
                     var index = username.IndexOf("@");
 
                         <div class="thumbnail" id="comment">

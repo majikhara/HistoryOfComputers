@@ -77,7 +77,7 @@ namespace HistoryOfComputers.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddComment([Bind("ArticleID,UserID,CommentText,DateCreated")] Comment comment)
+        public async Task<IActionResult> AddComment([Bind("ArticleID,UserID,CommentText,DateCreated,UserName")] Comment comment)
         {
             if (ModelState.IsValid)
             {
