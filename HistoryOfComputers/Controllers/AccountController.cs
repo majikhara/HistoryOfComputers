@@ -127,6 +127,8 @@ namespace HistoryOfComputers.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //dcowan: assign new users to default "user" role
+                    IdentityResult roleResult = await _userManager.AddToRoleAsync(user, "user");
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

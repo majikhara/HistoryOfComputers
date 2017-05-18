@@ -7,53 +7,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HistoryOfComputers.Data;
 using HistoryOfComputers.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
 
 namespace HistoryOfComputers.Controllers
 {
-    //[Authorize(Roles = "admin")]
-    public class ArticleController : Controller
+    public class AdminController : Controller
     {
         private readonly HistoryContext _context;
-        private readonly UserManager<ApplicationUser> _userManager; //dcowan: need Identity users
 
-        public ArticleController(HistoryContext context, UserManager<ApplicationUser> userManager)
+        public AdminController(HistoryContext context)
         {
-            _context = context;
-            _userManager = userManager;
+            _context = context;    
         }
 
-        private Task<ApplicationUser> GetCurrentUserAsync()
+        // GET: Admin
+        public async Task<IActionResult> Index()
         {
-            return _userManager.GetUserAsync(HttpContext.User);
-
+            var historyContext = _context.Articles.Include(a => a.TimePeriod);
+            return View(await historyContext.ToListAsync());
         }
 
-
-        // GET: Article
-        public async Task<IActionResult> Index(int? id)
-        {
-            //var historyContext = (from a in  _context.Articles select a); //put include here
-
-            //if(id != null)
-            //{    
-            //    historyContext = historyContext.Where(x=> x.PeriodID == id.Value);
-            //}
-            IQueryable<Article> articles = _context.Articles
-                .Where(c => !id.HasValue || c.PeriodID == id)
-                .OrderBy(i => i.Year).Include(x => x.TimePeriod);
-
-            return View(await articles
-                .ToListAsync());
-        }
-
-        // GET: Article/Details/5
+        // GET: Admin/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            //var viewModel = new Models.HistoryViewModels.ArticleCommentData();
-            //viewModel.Articles = await _context.Articles.Include(i => i.Comments).ToListAsync();
-
             if (id == null)
             {
                 return NotFound();
@@ -67,42 +42,17 @@ namespace HistoryOfComputers.Controllers
                 return NotFound();
             }
 
-            var comments = _context.Comments.Where(a => a.ArticleID == id).OrderByDescending(a=>a.DateCreated).ToList();
-
-
-            ViewData["comments"] = comments;
-
             return View(article);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddComment([Bind("ArticleID,UserID,CommentText,DateCreated")] Comment comment)
-        {
-            if (ModelState.IsValid)
-            {
-
-                _context.Add(comment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Details", new { id = comment.ArticleID });
-            }
-
-            var article = await _context.Articles
-                .Include(a => a.TimePeriod)                
-                .SingleOrDefaultAsync(m => m.ArticleID == comment.ArticleID);
-
-
-            return View(article);
-        }
-
-        // GET: Article/Create
+        // GET: Admin/Create
         public IActionResult Create()
         {
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName");
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID");
             return View();
         }
 
-        // POST: Article/Create
+        // POST: Admin/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,11 +65,11 @@ namespace HistoryOfComputers.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
             return View(article);
         }
 
-        // GET: Article/Edit/5
+        // GET: Admin/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -132,11 +82,11 @@ namespace HistoryOfComputers.Controllers
             {
                 return NotFound();
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
             return View(article);
         }
 
-        // POST: Article/Edit/5
+        // POST: Admin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -168,11 +118,11 @@ namespace HistoryOfComputers.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
             return View(article);
         }
 
-        // GET: Article/Delete/5
+        // GET: Admin/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -191,7 +141,7 @@ namespace HistoryOfComputers.Controllers
             return View(article);
         }
 
-        // POST: Article/Delete/5
+        // POST: Admin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

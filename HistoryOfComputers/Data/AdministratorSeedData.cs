@@ -40,7 +40,8 @@ namespace HistoryOfComputers.Data
 
                 // 2 - create the admin user
                 ApplicationUser adminUser = new ApplicationUser
-                {                    
+                {       
+                    UserName = "admin@historyofcomputers.com",
                     Email = "admin@historyofcomputers.com",
                     FirstName = "Emily",
                     LastName = "Allain"                    
@@ -56,12 +57,12 @@ namespace HistoryOfComputers.Data
             }
 
             //Add more roles here ...
-            //var userRole = await _roleManager.FindByNameAsync("user");
-            //if (userRole == null)
-            //{
-            //    userRole = new IdentityRole("user");
-            //    await _roleManager.CreateAsync(userRole);
-            //}
+            var userRole = await _roleManager.FindByNameAsync("user");
+            if (userRole == null)
+            {
+                userRole = new IdentityRole("user");
+                await _roleManager.CreateAsync(userRole);
+            }
         }
     }
 }
