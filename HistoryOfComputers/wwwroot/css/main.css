@@ -1,5 +1,10 @@
-﻿html {
+﻿/*General Content Start*/
+html {
     min-height: 100%;
+}
+
+h3{
+    font-family:'Courier New';
 }
 
 body {
@@ -8,39 +13,52 @@ body {
     min-height: 100%;
 }
 
-h1#main-title {
-    font-family: 'Courier New';
+p {
+    word-wrap: break-word;
+    font-family:'Courier New';
 }
 
-p{
-    word-wrap:break-word;
-}
-
-.navbar {
-    background-color: darkslategray;
-}
-
-.navbar-brand {
-    text-shadow: 2px 2px 2px black;
-    padding: 12px 15px;
-}
-
-.navbar-inverse .navbar-brand {
-    font-family: 'Courier New';
-    color: ghostwhite;
-}
-
-.navbar-inverse .navbar-nav > li > a {
-    font-family: 'Courier New';
-    color: ghostwhite;
-    text-shadow: 2px 2px 2px black;
-    font-size: 17px;
+h1{
+    font-family:'Courier New';
 }
 
 .container.body-content {
     min-height: 100%;
 }
-/*eallain start changes*/
+
+/*General Content End*/
+
+/*Article CSS*/
+h2#article-title{
+    font-family:'Courier New';
+}
+
+h3#article_year{
+    font-family:'Courier New';
+    font-weight:bold;
+}
+
+
+p#article_body{
+    font-family:Consolas;
+}
+
+label{
+    font-family:'Courier New';
+}
+
+.post-button{
+
+}
+
+/*Article CSS End*/
+
+
+/*ID Related Content*/
+h1#main-title {
+    font-family: 'Courier New';
+}
+
 div#terminal.center-block {
     background: #fcfbef; /* Old browsers */
     background: -moz-radial-gradient(center, ellipse cover, #fcfbef 0%, #e9dac3 46%, #e9dac3 46%, #e8cda4 91%); /* FF3.6-15 */
@@ -50,23 +68,6 @@ div#terminal.center-block {
     /*box-shadow: -1px 7px 148px -8px rgba(224,197,224,0.5);*/
     border-radius: 5%;
 }
-
-.thumbnail {
-    padding: 80px 10px;
-    vertical-align: middle;
-    text-align: center;
-    margin: 0px 5px 5px;
-    border-radius: 20%;
-    color: ghostwhite;
-    font-family: 'Courier New';
-    font-size: 30px;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    background-color: darkslategrey;
-}
-
-    .thumbnail:hover {
-        box-shadow: none;
-    }
 
 div#timeperiodchoice.thumbnail {
     background-color: black;
@@ -78,6 +79,96 @@ div#timeperiodchoice.thumbnail {
         background-color: black;
         box-shadow: inset -1px 7px 148px -8px rgba(224,197,224,0.3);
     }
+
+div#comment.thumbnail {
+    text-align: left;
+    font-size: 1em;
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 0;
+    box-shadow: none;
+    min-height:unset;
+}
+
+    div#comment.thumbnail span {
+        font-style: italic;
+        font-size: 1em;
+    }
+
+
+/*ID Related Content End*/
+
+
+/*Terminal on Home*/
+
+.frame {
+    background-color: transparent;
+    border-radius: 2rem;
+    border: 1rem solid;
+    border-bottom-color: #121212;
+    border-left-color: #080808;
+    border-right-color: #080808;
+    border-top-color: #020202;
+    box-shadow: inset 0 0 18rem black, inset 0 0 3rem black, 0 0 10rem black;
+    height: 1700%;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    width: 96%;
+    pointer-events: none;
+}
+
+.piece {
+    display: block;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.output {
+    -webkit-animation: crt-output 10ms infinite;
+    animation: crt-output 10ms infinite;
+    background-color: #031e11;
+    /*overflow: scroll;*/
+    position: absolute;
+    padding: 3rem 2rem;
+    pointer-events: auto;
+    text-shadow: 0rem 0.2rem 1rem #0c7b46;
+    z-index: -1;
+}
+/*End Terminal on Home*/
+
+
+
+/*eallain start changes*/
+
+
+.thumbnail {
+    padding: 80px 10px;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0px 5px 5px;
+    border-radius: 20%;
+    min-height:255px;
+    color: ghostwhite;
+    font-family: 'Courier New';
+    font-size: 30px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    /*background-color: darkslategrey;*/
+    
+    background: #256f77; /* Old browsers */
+    background: -moz-linear-gradient(top, #256f77 0%, #1b2533 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #256f77 0%,#1b2533 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #256f77 0%,#1b2533 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#256f77', endColorstr='#1b2533',GradientType=0 ); /* IE6-9 */
+}
+
+    .thumbnail:hover {
+        box-shadow: none;
+    }
+
+
 /*eallain end changes*/
 .article-details {
     padding-top: 20px;
@@ -107,7 +198,14 @@ div#timeperiodchoice.thumbnail {
     }
 /*eallain start of changes*/
 body {
-    background: #333;
+    /*background: #333;*/
+    /*background:black;*/
+    background:fixed;
+    background: #1a422a; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #1a422a 12%, #021c10 50%, #000000 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover, #1a422a 12%,#021c10 50%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center, #1a422a 12%,#021c10 50%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a422a', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 img {
@@ -124,24 +222,69 @@ img {
 
 /*dcowan start of changes*/
 div.scroll {
-    height:300px;
-    overflow-y:scroll;
-    overflow-x:hidden;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-div#comment.thumbnail {
-    text-align:left;
-    font-size: 1em;
-    padding: 5px 10px;
-    margin: 10px;
-    border-radius: 0;
-    box-shadow: none;
-}
-div#comment.thumbnail span{
-    font-style:italic;
-    font-size:1em;
+
+
+/* Navigation Bar */
+.navbar {
+    /*background-color: darkslategray;*/
+    background: #256f77; /* Old browsers */
+    background: -moz-linear-gradient(top, #256f77 0%, #1b2533 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #256f77 0%,#1b2533 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #256f77 0%,#1b2533 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#256f77', endColorstr='#1b2533',GradientType=0 ); /* IE6-9 */
 }
 
+.navbar-brand {
+    text-shadow: 2px 2px 2px black;
+    padding: 12px 15px;
+}
+
+.navbar-inverse .navbar-brand {
+    font-family: 'Courier New';
+    color: ghostwhite;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: inherit;
+}
+
+.dropdown-menu > li > a {
+    font-family: 'Courier New';
+    padding: 10px;
+    color: white !important;
+    text-shadow: 2px 2px 2px black;
+}
+
+.navbar-inverse .btn-link {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    font-family: 'Courier New';
+    text-decoration: none;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: cadetblue;
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: darkslategrey;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    font-family: 'Courier New';
+    color: ghostwhite;
+    text-shadow: 2px 2px 2px black;
+    font-size: 17px;
+}
+/*Navigation Bar End*/
+
+/*Timeline Start*/
 /** timeline box structure **/
 .timeline {
     list-style: none;
@@ -210,33 +353,6 @@ div#comment.thumbnail span{
         -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
         box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
     }
-
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: inherit;
-}
-
-.dropdown-menu > li > a {
-    font-family: 'Courier New';
-    padding: 10px;
-    color: white !important;
-    text-shadow: 2px 2px 2px black;
-}
-
-.navbar-inverse .btn-link {
-    color: white;
-    text-shadow: 2px 2px 2px black;
-    font-family: 'Courier New';
-    text-decoration: none;
-}
-
-.dropdown-menu > li > a:hover {
-    background-color: cadetblue;
-    color: white;
-}
-
-.dropdown-menu {
-    background-color: darkslategrey;
-}
 
 .timeline-panel {
     margin: 1em -1em;
@@ -389,5 +505,7 @@ h1#timeline-title {
             right: auto;
         }
 }
+
+/*Timeline End*/
 
 

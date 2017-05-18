@@ -12,6 +12,8 @@ using Microsoft.Extensions.Options;
 using HistoryOfComputers.Models;
 using HistoryOfComputers.Models.AccountViewModels;
 using HistoryOfComputers.Services;
+//using Microsoft.AspNetCore.Http; //for upload (IFormFile)
+//using Microsoft.AspNetCore.Hosting; //for upload (IHostingEnvironment)
 
 namespace HistoryOfComputers.Controllers
 {
@@ -24,6 +26,7 @@ namespace HistoryOfComputers.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
+        //private IHostingEnvironment _hostingEnv; //for upload
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -31,7 +34,9 @@ namespace HistoryOfComputers.Controllers
             IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory
+            //IHostingEnvironment env //for upload
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -39,6 +44,7 @@ namespace HistoryOfComputers.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+
         }
 
         //
@@ -112,7 +118,10 @@ namespace HistoryOfComputers.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName =model.FirstName,
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName =model.FirstName,
                     LastName =model.LastName };
                 //user.Id
                 var result = await _userManager.CreateAsync(user, model.Password);
