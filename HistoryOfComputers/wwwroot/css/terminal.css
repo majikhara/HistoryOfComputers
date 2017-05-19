@@ -33,7 +33,7 @@ a.btn.btn-default{
 
 a,
 a:visited {
-    border-bottom: 0.2rem solid #14fdce;
+    /*border-bottom: 0.2rem solid #14fdce;*/
     color: #14fdce;
     text-decoration: none;
 }

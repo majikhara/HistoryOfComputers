@@ -16,8 +16,11 @@
     <Content Include="wwwroot\css\crt.css" />
     <Content Include="wwwroot\css\main.css" />
     <Content Include="wwwroot\css\terminal.css" />
+    <Content Include="wwwroot\js\jquery.coolType.js" />
+    <Content Include="wwwroot\js\typing.js" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="1.16.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.1" />

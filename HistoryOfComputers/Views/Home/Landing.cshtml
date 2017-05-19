@@ -6,12 +6,22 @@
 <div class="emblem"><span class="icon-information"></span></div>
 <div class="frame">
     <div class="piece output">
-        <h1>History of Computers</h1>
+        <div >
+            <a asp-controller="Account" asp-action="Login">>LOGIN</a>
+            <a asp-controller="Account" asp-action="Register">>REGISTER</a>
+
+        </div>
+        <div style="min-height:300px">
+            <h1>History of Computers</h1>
+
+            <p id="firstline"> </p>
+            <p id="secondline"> </p>
+            <p id="thirdline"> </p>
+
+        </div>
+        @*<a asp-controller="Account" asp-action="Login">>LOGIN</a>
+        <a asp-controller="Account" asp-action="Register">>REGISTER</a>*@
         
-        <p>> In a world where technology has taken over, we can sometimes forget our roots.</p>
-        <p>> With this site, our goal is to give everyone a window into the past, to see the origin of computers to give us a further appreciation for what we have, and perhaps nostalgia for others. </p>
-        <a asp-controller="Account" asp-action="Login" >>LOGIN</a>@*class="btn btn-default"*@
-        <a asp-controller="Account" asp-action="Register" >>REGISTER</a>@*class="btn btn-default"*@
 
         
     </div>

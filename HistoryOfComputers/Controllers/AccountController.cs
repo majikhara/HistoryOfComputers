@@ -131,13 +131,17 @@ namespace HistoryOfComputers.Controllers
                     IdentityResult roleResult = await _userManager.AddToRoleAsync(user, "user");
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                    //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
+                        $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
+
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    //_logger.LogInformation(3, "User created a new account with password.");
+
                     return RedirectToLocal(returnUrl);
+                    //return RedirectToAction("RegisterSuccess");
+                    
                 }
                 AddErrors(result);
             }
@@ -154,7 +158,7 @@ namespace HistoryOfComputers.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction("Login");
         }
 
         //
@@ -462,6 +466,12 @@ namespace HistoryOfComputers.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        public IActionResult RegisterSuccess()
+        {
+            return View();
+
         }
 
         #region Helpers
