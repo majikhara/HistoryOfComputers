@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using HistoryOfComputers.Data;
 using HistoryOfComputers.Models;
 
+//Random comment
+
 namespace HistoryOfComputers.Controllers
 {
     public class AdminController : Controller
