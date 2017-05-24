@@ -69,16 +69,7 @@ div#terminal.center-block {
     border-radius: 5%;
 }
 
-div#timeperiodchoice.thumbnail {
-    background-color: black;
-    border-radius: 1%;
-    box-shadow: inset -1px 7px 148px -8px rgba(224,197,224,0.3);
-}
 
-    div#timeperiodchoice.thumbnail:hover {
-        background-color: black;
-        box-shadow: inset -1px 7px 148px -8px rgba(224,197,224,0.3);
-    }
 
 div#comment.thumbnail {
     text-align: left;
