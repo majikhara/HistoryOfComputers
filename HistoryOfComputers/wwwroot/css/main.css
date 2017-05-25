@@ -3,8 +3,12 @@ html {
     min-height: 100%;
 }
 
-h3{
-    font-family:'Courier New';
+a{
+    color:white;
+}
+
+h3 {
+    font-family: 'Courier New';
 }
 
 body {
@@ -13,13 +17,17 @@ body {
     min-height: 100%;
 }
 
-p {
-    word-wrap: break-word;
-    font-family:'Courier New';
+td, th, tr{
+    border:1px solid white;
 }
 
-h1{
-    font-family:'Courier New';
+p {
+    word-wrap: break-word;
+    font-family: 'Courier New';
+}
+
+h1 {
+    font-family: 'Courier New';
 }
 
 .container.body-content {
@@ -29,26 +37,25 @@ h1{
 /*General Content End*/
 
 /*Article CSS*/
-h2#article-title{
-    font-family:'Courier New';
+h2#article-title {
+    font-family: 'Courier New';
 }
 
-h3#article_year{
-    font-family:'Courier New';
-    font-weight:bold;
+h3#article_year {
+    font-family: 'Courier New';
+    font-weight: bold;
 }
 
 
-p#article_body{
-    font-family:Consolas;
+p#article_body {
+    font-family: Consolas;
 }
 
-label{
-    font-family:'Courier New';
+label {
+    font-family: 'Courier New';
 }
 
-.post-button{
-
+.post-button {
 }
 
 /*Article CSS End*/
@@ -70,15 +77,52 @@ div#terminal.center-block {
 }
 
 
+/*div#pre70s:hover {
+    background-image: url('../images/pre70s.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-weight: bold;
+}
 
-div#comment.thumbnail {
+div#d1970s:hover {
+    background-image: url('../images/70s.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-weight: bold;  
+}
+
+div#d1980s:hover {
+    background-image: url('../images/80s.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-weight: bold;
+}
+
+div#d1990s:hover {
+    background-image: url('../images/90s.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-weight: bold;
+}
+
+div#d2000s:hover {
+    background-image: url('../images/00s.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-weight: bold;
+}*/
+
+p.decade {
+    text-shadow: 4px 4px 2px #000;
+}
+    div#comment.thumbnail {
     text-align: left;
     font-size: 1em;
     padding: 5px 10px;
     margin: 10px;
     border-radius: 0;
     box-shadow: none;
-    min-height:unset;
+    min-height: unset;
 }
 
     div#comment.thumbnail span {
@@ -87,12 +131,9 @@ div#comment.thumbnail {
     }
 
 
-/*ID Related Content End*/
-
-
-/*Terminal on Home*/
-
-.frame {
+/*ID Related Content End
+    /*Terminal on Home*/
+    .frame {
     background-color: transparent;
     border-radius: 2rem;
     border: 1rem solid;
@@ -175,22 +216,25 @@ div#comment.thumbnail {
 }
 
 .site-footer {
-    border-top: solid 2px black;
-    width: 100%;
-    padding: 0;
-    text-align: center;
-    background-color: darkslategrey;
+    height: 50px;
+    text-align:center;
 }
 
-    .site-footer p {
+/*.site-footer {
+    
+    
+    
+}*/
+
+    /*.site-footer p {
         margin: 0;
         padding: 0;
-    }
+    }*/
 /*eallain start of changes*/
 body {
     /*background: #333;*/
     /*background:black;*/
-    background:fixed;
+    background: fixed;
     background: #1a422a; /* Old browsers */
     background: -moz-radial-gradient(center, ellipse cover, #1a422a 12%, #021c10 50%, #000000 100%); /* FF3.6-15 */
     background: -webkit-radial-gradient(center, ellipse cover, #1a422a 12%,#021c10 50%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
@@ -495,7 +539,3 @@ h1#timeline-title {
             right: auto;
         }
 }
-
-/*Timeline End*/
-
-

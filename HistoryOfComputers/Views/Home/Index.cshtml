@@ -8,54 +8,59 @@
     <br />
     <br />
 
-@*<div class="center-block" id="terminal">*@
-@*<div class="frame">*@
-    @*<div class="box center-block">
-        <div class="thumbnail" id="timeperiodchoice" style="padding:30px;">*@
-    @*<div class="piece output">*@
-        <h1 class="text-center" id="main-title">Choose a Time Period to Continue</h1>
+  
+    <h1 class="text-center" id="main-title">Choose a Time Period to Continue</h1>
     <br />
-       
     <div class="row">
         <a asp-controller="Article" asp-action="Index" asp-route-id="1">
-            <div class="thumbnail col-sm-push-1 col-sm-3" id="Pre70s">
-                <p>Pre-1970s</p>
+            <div class="trans">
+                <div class="thumbnail col-sm-push-1 col-sm-3" id="pre70s">
+                    <p class="decade">Pre-1970s</p>
+                    @*<img src="~/images/70s.png" />*@
+                </div>
+               
             </div>
         </a>
         <a asp-controller="Article" asp-action="Index" asp-route-id="2">
-            <div class="thumbnail col-sm-push-1 col-sm-3" id="1970s">
-                <p>1970s</p>
+            <div class="trans">
+                <div class="thumbnail col-sm-push-1 col-sm-3" id="d1970s">
+                    <p class="decade">1970s</p>
+                </div>
+                <div class="overlay"></div>
             </div>
+
         </a>
         <a asp-controller="Article" asp-action="Index" asp-route-id="3">
-            <div class="thumbnail col-sm-push-1 col-sm-3" id="1980s">
-                <p>1980s</p>
-            </div>
+          
+                <div class="thumbnail col-sm-push-1 col-sm-3" id="d1980s">
+                    <p class="decade">1980s</p>
+                </div>
+         
         </a>
     </div>
     <div class="row">
         <a asp-controller="Article" asp-action="Index" asp-route-id="4">
-            <div class="thumbnail col-sm-push-1 col-sm-3" id="1990s">
-                <p>1990s</p>
+            <div class="trans">
+                <div class="thumbnail col-sm-push-1 col-sm-3" id="d1990s">
+                    <p class="decade">1990s</p>
+                </div>
             </div>
         </a>
         <a asp-controller="Article" asp-action="Index" asp-route-id="5">
-            <div class="thumbnail col-sm-push-1 col-sm-3" id="2000s">
-                <p>2000s</p>
+            <div class="trans">
+                <div class="thumbnail col-sm-push-1 col-sm-3" id="d2000s">
+                    <p class="decade">2000s</p>
+                </div>
             </div>
         </a>
         <a asp-controller="Article" asp-action="Index">
-            <div class="thumbnail col-sm-push-1 col-sm-3" id="all-decade">
-                <p>View All</p>
+            <div class="trans">
+                <div class="thumbnail col-sm-push-1 col-sm-3" id="all-decade">
+                    <p class="decade">View All</p>
+                </div>
             </div>
         </a>
-    </div> 
     </div>
-@*</div>*@
-@*</div>*@
-@*</div>
-    </div>
-    <h4 class="text-center" style="font-family:'Courier New'; color:black; padding-top:10px;">IBM <span class="pull-right"> <i class="glyphicon glyphicon-collapse-down"></i></span></h4>*@
-@*</div>*@
-@*</div>*@
+</div>
+
 

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HistoryOfComputers.Controllers
 {
-    //[Authorize(Roles = "admin")]
+    [Authorize]
     public class ArticleController : Controller
     {
         private readonly HistoryContext _context;
@@ -95,112 +95,112 @@ namespace HistoryOfComputers.Controllers
             return View(article);
         }
 
-        // GET: Article/Create
-        public IActionResult Create()
-        {
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName");
-            return View();
-        }
+        //// GET: Article/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName");
+        //    return View();
+        //}
 
         // POST: Article/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArticleID,PeriodID,Title,Year,Body,Reference,Image")] Article article)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(article);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
-            return View(article);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("ArticleID,PeriodID,Title,Year,Body,Reference,Image")] Article article)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(article);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
+        //    return View(article);
+        //}
 
-        // GET: Article/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Article/Edit/5
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
-            return View(article);
-        }
+        //    var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
+        //    if (article == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
+        //    return View(article);
+        //}
 
-        // POST: Article/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArticleID,PeriodID,Title,Year,Body,Reference,Image")] Article article)
-        {
-            if (id != article.ArticleID)
-            {
-                return NotFound();
-            }
+        //// POST: Article/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("ArticleID,PeriodID,Title,Year,Body,Reference,Image")] Article article)
+        //{
+        //    if (id != article.ArticleID)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(article);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ArticleExists(article.ArticleID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
-            return View(article);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(article);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!ArticleExists(article.ArticleID))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
+        //    return View(article);
+        //}
 
-        // GET: Article/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Article/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var article = await _context.Articles
-                .Include(a => a.TimePeriod)
-                .SingleOrDefaultAsync(m => m.ArticleID == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
+        //    var article = await _context.Articles
+        //        .Include(a => a.TimePeriod)
+        //        .SingleOrDefaultAsync(m => m.ArticleID == id);
+        //    if (article == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(article);
-        }
+        //    return View(article);
+        //}
 
-        // POST: Article/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
-            _context.Articles.Remove(article);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //// POST: Article/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
+        //    _context.Articles.Remove(article);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
 
         private bool ArticleExists(int id)
         {

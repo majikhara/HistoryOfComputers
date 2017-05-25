@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace HistoryOfComputers.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="admin")]
     public class CommentController : Controller
     {
         private readonly HistoryContext _context;
@@ -161,7 +161,7 @@ namespace HistoryOfComputers.Controllers
 
             return View(comment);
         }
-
+      
         // POST: Comment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

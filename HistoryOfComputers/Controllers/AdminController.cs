@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HistoryOfComputers.Data;
 using HistoryOfComputers.Models;
+using Microsoft.AspNetCore.Authorization;
 
 //Random comment
 
 namespace HistoryOfComputers.Controllers
 {
+    [Authorize(Roles="admin")]
     public class AdminController : Controller
     {
         private readonly HistoryContext _context;
@@ -50,7 +52,7 @@ namespace HistoryOfComputers.Controllers
         // GET: Admin/Create
         public IActionResult Create()
         {
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID");
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName");
             return View();
         }
 
@@ -67,7 +69,7 @@ namespace HistoryOfComputers.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
             return View(article);
         }
 
@@ -84,7 +86,7 @@ namespace HistoryOfComputers.Controllers
             {
                 return NotFound();
             }
-            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodID", article.PeriodID);
+            ViewData["PeriodID"] = new SelectList(_context.TimePeriods, "PeriodID", "PeriodName", article.PeriodID);
             return View(article);
         }
 

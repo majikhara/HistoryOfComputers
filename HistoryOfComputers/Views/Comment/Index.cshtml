@@ -1,47 +1,50 @@
 @model IEnumerable<HistoryOfComputers.Models.Comment>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Manage Comments";
 }
 
-<h2>Index</h2>
+<div class="col-md-offset-1 col-md-10">
+    <h1 class="text-center">Manage Comments</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.UserID)
+                    @Html.DisplayNameFor(model => model.UserName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.CommentText)
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Article)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CommentText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Article.ArticleID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CommentID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CommentID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CommentID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CommentText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article.Title)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CommentID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CommentID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CommentID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

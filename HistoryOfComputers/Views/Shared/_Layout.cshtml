@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - History Of Computers</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.ico" />
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -12,6 +13,7 @@
         <link rel="stylesheet" href="~/css/main.css" />
     </environment>
     <environment names="Staging,Production">
+      
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
@@ -37,13 +39,26 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("admin"))
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Admin" asp-action="Index">Manage Articles</a></li>
+                                    <li><a asp-controller="Comment" asp-action="Index">Manage Comments</a></li>
+                                </ul>
+                            </li>
+                        }
+                    }
+
                     @*<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        </ul>
-                    </li>*@
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                            </ul>
+                        </li>*@
 
 
                     <li class="dropdown">
@@ -54,7 +69,7 @@
                             <li><a asp-controller="Article" asp-action="Index" asp-route-id="3">1980s</a></li>
                             <li><a asp-controller="Article" asp-action="Index" asp-route-id="4">1990s</a></li>
                             <li><a asp-controller="Article" asp-action="Index" asp-route-id="5">2000s</a></li>
-                            <li><a asp-controller="Article" asp-action="Index">View All</a></li>
+                            <li><a asp-controller="Article" asp-action="Index" asp-route-id="">View All</a></li>
                         </ul>
                     </li>
 
@@ -66,11 +81,15 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content col-md-12">
+    <div class="container body-content col-md-12" style="min-height: calc(100vh - 70px);">
         @RenderBody()
 
 
+
+
     </div>
+
+
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -95,10 +114,11 @@
 
     @RenderSection("Scripts", required: false)
 
-    @*<hr />
-        <footer class="site-footer">
-            <p>&copy; 2017 - HistoryOfComputers</p>
-        </footer>*@
 
+    <footer class="site-footer">
+        <p>&copy; 2017 - HistoryOfComputers</p>
+    </footer>
 </body>
 </html>
+
+
